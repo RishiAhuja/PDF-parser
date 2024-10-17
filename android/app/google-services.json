@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "84778345557",
+    "project_id": "pdf-parser-88393",
+    "storage_bucket": "pdf-parser-88393.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84778345557:android:d153907ad6b5902014e0dc",
+        "android_client_info": {
+          "package_name": "com.example.pdf_parser"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZBvl_IH_ET1FpxDlk3F1EkWJOJDt0j4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
