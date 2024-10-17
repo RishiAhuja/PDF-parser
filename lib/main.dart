@@ -36,16 +36,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        // home: const QueryScreen(
-        //   questions: [
-        //     "What advantages and disadvantages come with using asynchronous data transmission compared to synchronous transmission?",
-        //     "How do streams differ from other forms of data transfer, and what are their key benefits?",
-        //     "Explain the concept of futures in Dart and how they are used to handle asynchronous operations.",
-        //     "What are the potential use cases for asynchronous data, streams, and futures in real-world applications?",
-        //     "How does the use of start and stop bits in asynchronous transmission impact the efficiency and reliability of data?"
-        //   ],
-        // ));
-
         home: MyHomePage());
   }
 }
@@ -160,121 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // Future<void> pickPDF(BuildContext context) async {
-  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //     type: FileType.custom,
-  //     allowedExtensions: ['pdf'],
-  //   );
-
-  //   if (result != null) {
-  //     setState(() {
-  //       isLoading = true;
-  //     });
-  //     File file = File(result.files.single.path!);
-
-  //     String path = result.files.single.path!;
-
-  //     // Load the PDF document
-  //     final PdfDocument document =
-  //         PdfDocument(inputBytes: File(path).readAsBytesSync());
-
-  //     final PdfTextExtractor extractor = PdfTextExtractor(document);
-  //     // Extract text from all pages
-  //     String text = extractor.extractText();
-
-  //     print(text);
-
-  //     // Optionally, extract text with formatting information
-  //     List<TextLine> lines = extractor.extractTextLines();
-
-  //     List<Map> model = [];
-  //     for (int i = 0; i < lines.length; i++) {
-  //       Map<String, dynamic> modelMap = {
-  //         'fontName': lines[i].fontName.toString(),
-  //         'fontSize': lines[i].fontSize,
-  //         'text': lines[i].text
-  //       };
-  //       model.add(modelMap);
-  //     }
-
-  //     // List<double> embedLists = await embeddings(text);
-
-  //     List<double> embedLists = [
-  //       0.05537452,
-  //       0.05257315,
-  //       -0.036295507,
-  //       0.008237362,
-  //       0.021834228,
-  //       0.054557648,
-  //       0.03687299,
-  //       0.033815816,
-  //       0.0058602816,
-  //       -0.032275323,
-  //       -0.035795037,
-  //       0.0025158352,
-  //       -0.004263709,
-  //       -0.0074944934,
-  //       -0.023983082,
-  //       -0.013726047,
-  //       0.07460791,
-  //       0.039006736,
-  //       -0.016828535,
-  //       -0.033668183,
-  //       -0.042583663,
-  //       -0.01932476,
-  //       -0.04770951,
-  //       -0.038692005,
-  //       0.01349986,
-  //       -0.05063446,
-  //       0.05201206,
-  //       -0.010596106,
-  //       -0.0028296944,
-  //       0.0012711956,
-  //       0.029907066,
-  //       0.049524117,
-  //       0.02200814,
-  //       -0.055127777,
-  //       -0.026242146,
-  //       0.04583213,
-  //       0.020855967,
-  //       0.005611414,
-  //       0.060112197,
-  //       -0.038615353,
-  //       -0.076776244,
-  //       -0.009415655,
-  //       -0.00997938,
-  //       0.06381351,
-  //       -0.023580287,
-  //       -0.033419326,
-  //       -0.03995351,
-  //       0.042031087,
-  //       0.021732021,
-  //       0.01603197,
-  //       0.026294744,
-  //       -0.047449958,
-  //       -0.06864778,
-  //       0.010986972,
-  //       -0.030732943,
-  //       -0.026631078,
-  //       -0.012895069,
-  //       0.0051858155,
-  //       0.041450184,
-  //     ];
-  //     setState(() {
-  //       loadingText = "Uploading the embeddings and PDF to the server";
-  //     });
-  //     // await uploadPDF(file, model, embedLists);
-  //     // ScaffoldMessenger.of(context).showSnackBar(
-  //     //   SnackBar(content: Text('Uploaded ${result.files.single.name}')),
-  //     // );
-  //     makeQuestionList(text);
-  //   } else {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text('No file selected')),
-  //     );
-  //   }
-  // }
-
   Future<void> pickPDF(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -313,9 +188,9 @@ class _MyHomePageState extends State<MyHomePage> {
         model.add(modelMap);
       }
 
-      // List<double> embedLists = [-0.02, -0.54];
+      List<double> embedLists = [-0.02, -0.54];
 
-      // uploadPDF(fileBytes, model, embedLists);
+      uploadPDF(fileBytes, model, embedLists);
 
       // Continue with your logic...
       makeQuestionList(text);
@@ -399,14 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void makeQuestionList(String text) async {
     try {
-      // String response = await generateResponses(text);
-      String response = '''
-      - What advantages and disadvantages come with using asynchronous data transmission compared to synchronous transmission?
-      - How do streams differ from other forms of data transfer, and what are their key benefits?
-      - Explain the concept of futures in Dart and how they are used to handle asynchronous operations.
-      - What are the potential use cases for asynchronous data, streams, and futures in real-world applications?
-      - How does the use of start and stop bits in asynchronous transmission impact the efficiency and reliability of data?
-      ''';
+      String response = await generateResponses(text);
       if (response.isNotEmpty) {
         print("Responses are generated successfully.");
 

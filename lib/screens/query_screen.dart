@@ -245,12 +245,7 @@ the answer of the question which will go inside "questionResult" should be gener
                                       fontWeight: FontWeight.w400)),
                               const SizedBox(height: 8),
                               GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    showCitations =
-                                        true; // Show citations when tapped
-                                  });
-                                },
+                                onTap: () {},
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 5),
@@ -268,7 +263,8 @@ the answer of the question which will go inside "questionResult" should be gener
                                   children: List.generate(c.length, (i) {
                                     return Column(
                                       children: [
-                                        Text(c[index][i]['previous_line']),
+                                        Text(c[index][i]['previous_line'] ??
+                                            "null"),
                                         Container(
                                           decoration: const BoxDecoration(
                                               color: Colors.yellow),
