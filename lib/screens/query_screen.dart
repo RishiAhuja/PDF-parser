@@ -29,8 +29,12 @@ class _QueryScreenState extends State<QueryScreen> {
   List<String> responses = [];
   List c = [];
   bool showCitations = true;
+  bool isLoading = false;
 
   void _generateResponse() async {
+    setState(() {
+      isLoading = true;
+    });
     // questions.add(queryController.text.trim());
     // final value = await gemini.generateFromText('''
     //   I will provide you with some text and a question, generate responses based on that question and the text:
@@ -102,6 +106,10 @@ the answer of the question which will go inside "questionResult" should be gener
       print("Previous Line: ${citation['previous_line']}");
       print("Next Line: ${citation['next_line']}");
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -221,80 +229,98 @@ the answer of the question which will go inside "questionResult" should be gener
                   //   ),
                   // ),
 
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount:
-                          responses.length, // Number of items in the list
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                questions[index],
-                                style: GoogleFonts.archivo(
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(responses[index],
-                                  style: GoogleFonts.archivo(
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w400)),
-                              const SizedBox(height: 8),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.lightGreenAccent,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: const Text(
-                                      "Citations"), // Add text for clarity
-                                ),
-                              ),
-                              // Only show citations if showCitations is true
-                              if (showCitations && c.isNotEmpty) ...[
-                                Column(
-                                  children: List.generate(c.length, (i) {
-                                    return Column(
-                                      children: [
-                                        Text(c[index][i]['previous_line'] ??
-                                            "null"),
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                              color: Colors.yellow),
-                                          child: Text(
-                                              c[index][i]['actual_citation']),
+                  isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          color: Colors.black87,
+                        ))
+                      : SizedBox(
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:
+                                responses.length, // Number of items in the list
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      questions[index],
+                                      style: GoogleFonts.archivo(
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(responses[index],
+                                        style: GoogleFonts.archivo(
+                                            color: Colors.black87,
+                                            fontWeight: FontWeight.w400)),
+                                    const SizedBox(height: 8),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.lightGreenAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
-                                        Text(
-                                            c[index][i]['next_line'] ?? "null"),
-                                        const SizedBox(
-                                            height:
-                                                10), // Add spacing between citations
-                                      ],
-                                    );
-                                  }),
+                                        child: const Text(
+                                            "Citations"), // Add text for clarity
+                                      ),
+                                    ),
+                                    // Only show citations if showCitations is true
+                                    if (showCitations && c.isNotEmpty) ...[
+                                      Column(
+                                        children: List.generate(c.length, (i) {
+                                          return Column(
+                                            children: [
+                                              Text(c[index][i]
+                                                      ['previous_line'] ??
+                                                  "null"),
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.yellow),
+                                                child: Text(c[index][i]
+                                                    ['actual_citation']),
+                                              ),
+                                              Text(c[index][i]['next_line'] ??
+                                                  "null"),
+                                              const SizedBox(
+                                                  height:
+                                                      10), // Add spacing between citations
+                                            ],
+                                          );
+                                        }),
+                                      ),
+                                    ],
+                                    const SizedBox(
+                                        height:
+                                            30), // Space after each response
+                                  ],
                                 ),
-                              ],
-                              const SizedBox(
-                                  height: 30), // Space after each response
-                            ],
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                  ),
+                        ),
 
                   const Spacer(),
                   Column(
                     // mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Related Questions',
+                          style: GoogleFonts.archivo(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
                       SizedBox(
                         child: ListView.builder(
                           shrinkWrap: true,
