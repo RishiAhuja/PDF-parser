@@ -86,45 +86,67 @@ class _QueryScreenState extends State<QueryScreen> {
         children: [
           Expanded(
             flex: 3,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              decoration: const BoxDecoration(color: Colors.black87),
-              child: SingleChildScrollView(
-                // Wrap Column with SingleChildScrollView
-                child: SizedBox(
-                  child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start, // Align text to start
-                    children: [
-                      Text(
-                        "Extracted Text",
-                        style: GoogleFonts.archivo(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10), // Optional spacing
-                      Text(
-                        widget.extractedText.isNotEmpty
-                            ? widget.extractedText
-                            : "No content extracted.",
-                        style: GoogleFonts.archivo(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ],
+            child: Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.webp"),
+                      fit: BoxFit
+                          .cover, // Ensures the image covers the entire container
+                    ),
                   ),
                 ),
-              ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                  child: SingleChildScrollView(
+                    // Wrap Column with SingleChildScrollView
+                    child: SizedBox(
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start, // Align text to start
+                        children: [
+                          Text(
+                            "Extracted Text",
+                            style: GoogleFonts.dmMono(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 20), // Optional spacing
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Text(
+                              widget.extractedText.isNotEmpty
+                                  ? widget.extractedText
+                                  : "No content extracted.",
+                              textAlign: TextAlign.justify,
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Expanded(
             flex: 7,
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.black87),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -133,11 +155,11 @@ class _QueryScreenState extends State<QueryScreen> {
                   isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
-                          color: Colors.black87,
+                          color: Color.fromARGB(255, 234, 234, 234),
                         ))
                       : SingleChildScrollView(
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height / 2,
+                            height: MediaQuery.of(context).size.height / 2.1,
                             child: ListView.builder(
                               shrinkWrap: true,
                               itemCount: responses
@@ -146,114 +168,165 @@ class _QueryScreenState extends State<QueryScreen> {
                                 return Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SelectableText(
-                                        questions[index],
-                                        style: GoogleFonts.archivo(
-                                            color: Colors.black87,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SelectableText(responses[index],
-                                          style: GoogleFonts.archivo(
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2.5,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SelectableText(
+                                          questions[index],
+                                          style: GoogleFonts.dmMono(
+                                              color: Colors.white,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SelectableText(responses[index],
+                                            style: GoogleFonts.archivo(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400)),
+                                        const SizedBox(height: 10),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              showCitationsList![index] =
+                                                  !(showCitationsList![index]);
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 5),
+                                            decoration: BoxDecoration(
                                               color: Colors.black87,
-                                              fontWeight: FontWeight.w400)),
-                                      const SizedBox(height: 8),
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            showCitationsList![index] =
-                                                !(showCitationsList![index]);
-                                          });
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8, vertical: 5),
-                                          decoration: BoxDecoration(
-                                            color: Colors.lightGreenAccent,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: const Text(
-                                              "Show Citations"), // Add text for clarity
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      // Only show citations if showCitations is true
-                                      if (showCitationsList![index] &&
-                                          c.isNotEmpty) ...[
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: List.generate(
-                                              (c[index]).length, (i) {
-                                            return Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "${(i + 1)}.",
-                                                    style: GoogleFonts.archivo(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 8,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 400,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        SelectableText(
-                                                          c[index][i][
-                                                                  'previous_line'] ??
-                                                              "",
-                                                        ),
-                                                        Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  horizontal:
-                                                                      12,
-                                                                  vertical: 8),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              color: Colors
-                                                                  .yellow),
-                                                          child: SelectableText(c[
-                                                                      index][i][
-                                                                  'actual_citation'] ??
-                                                              ""),
-                                                        ),
-                                                        SelectableText(c[index]
-                                                                    [i]
-                                                                ['next_line'] ??
-                                                            ""),
-                                                        const SizedBox(
-                                                            height:
-                                                                10), // Add spacing between citations
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              image: const DecorationImage(
+                                                image: AssetImage(
+                                                    "assets/images/background2.webp"),
+                                                fit: BoxFit
+                                                    .cover, // Ensures the image covers the entire container
                                               ),
-                                            );
-                                          }),
+                                            ),
+                                            child: Text(
+                                              "Show Citations",
+                                              style: GoogleFonts.dmMono(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w300),
+                                            ), // Add text for clarity
+                                          ),
                                         ),
+                                        const SizedBox(height: 10),
+                                        // Only show citations if showCitations is true
+                                        if (showCitationsList![index] &&
+                                            c.isNotEmpty) ...[
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: List.generate(
+                                                (c[index]).length, (i) {
+                                              return Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "${(i + 1)}.",
+                                                      style:
+                                                          GoogleFonts.archivo(
+                                                              fontSize: 20,
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 400,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          SelectableText(
+                                                            c[index][i][
+                                                                    'previous_line'] ??
+                                                                "",
+                                                            style: GoogleFonts
+                                                                .archivo(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                          Container(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    horizontal:
+                                                                        6,
+                                                                    vertical:
+                                                                        4),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            6),
+                                                                color: const Color
+                                                                    .fromARGB(
+                                                                    255,
+                                                                    189,
+                                                                    171,
+                                                                    7)),
+                                                            child:
+                                                                SelectableText(
+                                                              c[index][i][
+                                                                      'actual_citation'] ??
+                                                                  "",
+                                                              style: GoogleFonts.archivo(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w300,
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                          ),
+                                                          SelectableText(
+                                                            c[index][i][
+                                                                    'next_line'] ??
+                                                                "",
+                                                            style: GoogleFonts
+                                                                .archivo(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                          const SizedBox(
+                                                              height:
+                                                                  10), // Add spacing between citations
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
+                                          ),
+                                        ],
+                                        const SizedBox(
+                                            height:
+                                                30), // Space after each response
                                       ],
-                                      const SizedBox(
-                                          height:
-                                              30), // Space after each response
-                                    ],
+                                    ),
                                   ),
                                 );
                               },
@@ -261,100 +334,185 @@ class _QueryScreenState extends State<QueryScreen> {
                           ),
                         ),
                   const Spacer(),
-                  SingleChildScrollView(
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 10),
+                    // decoration:
+                    //     BoxDecoration(border: Border.all(color: Colors.grey)),
                     child: Column(
                       // mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: SelectableText(
-                            'Related Questions',
-                            style: GoogleFonts.archivo(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
                         SizedBox(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: widget.questions.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        queryController.text =
-                                            widget.questions[index].toString();
-                                      });
-                                    },
-                                    child: Padding(
+                          // width: MediaQuery.of(context).size.width / 2.3,
+                          // decoration: BoxDecoration(
+                          //     border: Border.all(color: Colors.grey)),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.library_books_sharp,
+                                      color: Colors.white,
+                                    ),
+                                    Padding(
                                       padding: const EdgeInsets.only(left: 8),
-                                      child: Text(
-                                        widget.questions[index].toString(),
-                                        style: GoogleFonts.archivo(
-                                            fontWeight: FontWeight.w400),
+                                      child: SelectableText(
+                                        'Related Questions',
+                                        style: GoogleFonts.dmMono(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 20),
                                       ),
                                     ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                SizedBox(
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: widget.questions.length,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 8),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  widget.questions[index]
+                                                      .toString(),
+                                                  maxLines:
+                                                      1, // Limit the number of lines
+                                                  overflow: TextOverflow
+                                                      .ellipsis, // This won't work directly
+                                                  style: GoogleFonts.archivo(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                                const Spacer(),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      queryController.text =
+                                                          widget
+                                                              .questions[index]
+                                                              .toString();
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100),
+                                                        color: const Color
+                                                            .fromARGB(
+                                                            255, 79, 79, 79)),
+                                                    padding:
+                                                        const EdgeInsets.all(4),
+                                                    child: const Icon(
+                                                      Icons.add,
+                                                      size: 16,
+                                                      color: Color.fromARGB(
+                                                          255, 234, 234, 234),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          if (index !=
+                                              widget.questions.length - 1)
+                                            const Divider(
+                                              color: Color.fromARGB(
+                                                  255, 79, 79, 79),
+                                            ),
+                                        ],
+                                      );
+                                    },
                                   ),
-                                  if (index != widget.questions.length - 1)
-                                    const Divider()
-                                ],
-                              );
-                            },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Form(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.black87,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 10,
-                                  child: TextFormField(
-                                    onFieldSubmitted: (value) {
-                                      if (!isLoading) {
-                                        _generateResponse();
-                                      } // Call submit when Enter is pressed
-                                    },
-                                    controller: queryController,
-                                    decoration: InputDecoration(
-                                      hintText: "Type your query here...",
-                                      hintStyle: GoogleFonts.archivo(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w300),
-                                      border: InputBorder.none,
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              vertical: 15, horizontal: 20),
-                                    ),
-                                    style: GoogleFonts.archivo(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                ),
-                                Expanded(
-                                    flex: 2,
-                                    child: GestureDetector(
-                                      onTap: () {
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Form(
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: const Color.fromARGB(221, 47, 47, 47),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    // flex: 10,
+                                    child: TextFormField(
+                                      onFieldSubmitted: (value) {
                                         if (!isLoading) {
                                           _generateResponse();
-                                        }
+                                        } // Call submit when Enter is pressed
                                       },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        child: const Icon(
-                                          Icons.send_rounded,
-                                          color: Colors.white,
-                                        ),
+                                      controller: queryController,
+                                      decoration: InputDecoration(
+                                        hintText: "Ask a question",
+                                        hintStyle: GoogleFonts.archivo(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 18),
+                                        border: InputBorder.none,
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 15, horizontal: 20),
                                       ),
-                                    ))
-                              ],
+                                      style: GoogleFonts.archivo(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (!isLoading) {
+                                        _generateResponse();
+                                      }
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: const Color.fromARGB(
+                                              255, 79, 79, 79)),
+                                      padding: const EdgeInsets.all(8),
+                                      child: const Icon(
+                                        Icons.arrow_upward_outlined,
+                                        color:
+                                            Color.fromARGB(255, 234, 234, 234),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )
