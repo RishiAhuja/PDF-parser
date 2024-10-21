@@ -2,12 +2,13 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_gemini/google_gemini.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:pdf_parser/constants/constants.dart';
 import 'package:pdf_parser/screens/query_screen.dart';
+import 'package:pdf_parser/widgets/front_button.dart';
+import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
 
@@ -29,14 +30,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'PDF parser',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: MyHomePage());
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+            title: 'PDF parser',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: const MyHomePage());
+      },
+    );
   }
 }
 
@@ -56,8 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isLoading = false;
   String loadingText = "Trying to extract data from the PDF";
   String? extractedText;
-
   Uint8List? pickedBytes;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,72 +84,53 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Simplify Document Research",
-                    style: GoogleFonts.archivo(
-                        color: Colors.black87,
-                        fontSize: 60,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Upload, Analyze, and Extract Knowledge instantly!",
-                    style: GoogleFonts.roboto(
-                        color: Colors.grey[600],
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () => pickPDF(context),
-                    child: Row(
-                      mainAxisSize: MainAxisSize
-                          .min, // This ensures the Row takes minimum width
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 10),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.black87,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Upload your document now",
-                                style: GoogleFonts.archivo(color: Colors.white),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                  padding: const EdgeInsets.all(5),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        color: Constants.backgroundColor),
-                                    color: Colors.black87,
-                                  ),
-                                  child: Icon(Icons.arrow_forward_rounded,
-                                      size: 18,
-                                      color: Constants.backgroundColor)),
-                            ],
-                          ),
-                        ),
-                      ],
+          : Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.webp"),
+                  fit: BoxFit
+                      .cover, // Ensures the image covers the entire container
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Decode Your Documents",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.archivo(
+                        color: Colors.white,
+                        fontSize: 28.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
-                ],
+                    Text(
+                      "Upload, Analyze, and Extract Knowledge instantly!",
+                      style: GoogleFonts.archivo(
+                          color: Colors.white,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FrontWidget(
+                            text: "Upload Document",
+                            onPressed: () => pickPDF(context),
+                            iconData: Icons.arrow_forward),
+                        FrontWidget(
+                            text: "Watch Now",
+                            onPressed: () => Future.delayed(Duration.zero),
+                            iconData: Icons.play_arrow)
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
     );
