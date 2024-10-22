@@ -48,7 +48,10 @@ dependencies:
   syncfusion_flutter_pdfviewer:
   flutter_markdown:
   sizer: ^3.0.4
-
+  firebase_auth:
+  shared_preferences:
+  intl:
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

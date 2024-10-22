@@ -5,13 +5,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_gemini/google_gemini.dart';
 import 'package:pdf_parser/constants/constants.dart';
 import 'package:pdf_parser/constants/query.dart';
+import 'package:sizer/sizer.dart';
 
 class QueryScreen extends StatefulWidget {
   const QueryScreen(
-      {super.key, required this.questions, required this.extractedText});
+      {super.key,
+      required this.questions,
+      required this.extractedText,
+      required this.uid,
+      this.name,
+      this.email});
 
   final List questions;
   final String extractedText;
+  final String uid;
+  final String? name;
+  final String? email;
 
   @override
   State<QueryScreen> createState() => _QueryScreenState();
@@ -84,65 +93,66 @@ class _QueryScreenState extends State<QueryScreen> {
       backgroundColor: Constants.backgroundColor,
       body: Row(
         children: [
-          Expanded(
-            flex: 3,
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/background.webp"),
-                      fit: BoxFit
-                          .cover, // Ensures the image covers the entire container
-                    ),
-                  ),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  child: SingleChildScrollView(
-                    // Wrap Column with SingleChildScrollView
-                    child: SizedBox(
-                      child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start, // Align text to start
-                        children: [
-                          Text(
-                            "Extracted Text",
-                            style: GoogleFonts.dmMono(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 20), // Optional spacing
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Text(
-                              widget.extractedText.isNotEmpty
-                                  ? widget.extractedText
-                                  : "No content extracted.",
-                              textAlign: TextAlign.justify,
-                              style: GoogleFonts.roboto(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
+          if (Device.orientation == Orientation.landscape)
+            Expanded(
+              flex: 3,
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/background.webp"),
+                        fit: BoxFit
+                            .cover, // Ensures the image covers the entire container
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                    child: SingleChildScrollView(
+                      // Wrap Column with SingleChildScrollView
+                      child: SizedBox(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start, // Align text to start
+                          children: [
+                            Text(
+                              "Extracted Text",
+                              style: GoogleFonts.dmMono(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 20), // Optional spacing
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Text(
+                                widget.extractedText.isNotEmpty
+                                    ? widget.extractedText
+                                    : "No content extracted.",
+                                textAlign: TextAlign.justify,
+                                style: GoogleFonts.roboto(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
           Expanded(
             flex: 7,
             child: Container(
@@ -345,6 +355,9 @@ class _QueryScreenState extends State<QueryScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
+                          width: Device.orientation == Orientation.portrait
+                              ? 40.w
+                              : 80.w,
                           // width: MediaQuery.of(context).size.width / 2.3,
                           // decoration: BoxDecoration(
                           //     border: Border.all(color: Colors.grey)),

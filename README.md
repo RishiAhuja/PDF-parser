@@ -10,10 +10,11 @@ PDF-parser for Prajna AI is a powerful tool designed to extract and analyze text
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.jpeg)
-![Screenshot 2](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/2.jpeg)
-![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/3.jpeg)
-![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/4.jpeg)
+![Screenshot 1](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.png)
+![Screenshot 2](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/2.png)
+![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/3.png)
+![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/4.png)
+![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/5.png)
 
 ---
 

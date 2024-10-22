@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf_parser/constants/constants.dart';
-import 'package:sizer/sizer.dart';
 
 class FrontWidget extends StatefulWidget {
   const FrontWidget(
@@ -54,8 +53,8 @@ class _FrontWidgetState extends State<FrontWidget> {
                 children: [
                   Text(
                     widget.text,
-                    style: GoogleFonts.dmMono(
-                        color: Colors.white, fontSize: 12.sp),
+                    style:
+                        GoogleFonts.dmMono(color: Colors.white, fontSize: 18),
                   ),
                   const SizedBox(
                     width: 10,
