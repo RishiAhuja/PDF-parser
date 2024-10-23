@@ -29,7 +29,7 @@ Start using now at: [here](https://pdf-parser-88393.web.app)
 
 Check out our YouTube video for a quick overview of how to use the PDF parser:
 
-[Watch the video](https://youtu.be/pY5gRcCBSGw)
+[Watch the video](https://youtu.be/ydlOXu-8uQg)
 
 ---
 
