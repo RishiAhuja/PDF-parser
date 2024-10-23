@@ -1,6 +1,6 @@
 # PDF-parser for Prajna AI
 
-[PDF Parser](https://pdf-parser-88393.web.app)
+[Hostings](https://pdf-parser-88393.web.app)
 
 ## Overview
 
@@ -8,6 +8,16 @@ PDF-parser for Prajna AI is a powerful tool designed to extract and analyze text
 
 ---
 
+## Features
+- Text and metadata extraction
+- Embedding generations
+- Sending to the server
+- creating anonymous one-time accounts and permanent accounts
+- User dashboard
+- Relevant questions generator
+- Query asking interface
+- Multiple citations option
+---
 ## Screenshots
 
 ![Screenshot 1](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.png)
