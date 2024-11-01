@@ -54,7 +54,13 @@ Try our live demo with our sample PDF:
 2. **Watch Tutorial**
    
    For a comprehensive overview of the PDF parser's capabilities, watch our tutorial:
-   [Video Guide](https://youtu.be/ydlOXu-8uQg)
+   
+   <div align="center">
+  <a href="https://youtu.be/ydlOXu-8uQg">
+    <img src="https://img.youtube.com/vi/ydlOXu-8uQg/maxresdefault.jpg" alt="Video Tutorial" style="width:100%;">
+    <img src="https://img.shields.io/badge/Watch%20Tutorial-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Tutorial" style="width:180px;position:relative;top:-28px;">
+  </a>
+</div>
 
 ---
 
