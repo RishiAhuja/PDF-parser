@@ -1,56 +1,61 @@
 # PDF-parser for Prajna AI
 
-[Hostings](https://pdf-parser-88393.web.app)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://pdf-parser-88393.web.app)
+<aside>Old Rolled back version due to Authentication issues</aside>
 
 ## Overview
 
-PDF-parser for Prajna AI is a powerful tool designed to extract and analyze text from PDF documents. This project leverages advanced algorithms to provide accurate results, making it an essential component for any AI-driven application.
+PDF-parser for Prajna AI is an advanced document processing tool that extracts, analyzes, and processes text from PDF documents. It seamlessly integrates with AI-driven applications to provide accurate and reliable text analysis.
 
----
+## Key Features
 
-## Features
-- Text and metadata extraction
-- Embedding generations
-- Sending to the server
-- creating anonymous one-time accounts and permanent accounts
-- User dashboard
-- Relevant questions generator
-- Query asking interface
-- Multiple citations option
----
-## Screenshots
+- **Document Processing**
+  - Comprehensive text and metadata extraction
+  - High-accuracy embedding generation
+  - Secure server-side processing
 
-![Screenshot 1](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.png)
-![Screenshot 2](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/2.png)
-![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/3.png)
-![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/4.png)
-![Screenshot 3](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/5.png)
+- **User Management**
+  - Anonymous one-time accounts
+  - Permanent account creation
+  - Personalized user dashboard
 
----
+- **Analysis Tools**
+  - Intelligent question generation
+  - Interactive query interface
+  - Multi-citation support system
 
-## Use at 
-Please use this demo PDF provided for the best result 
-Link to demo PDF: ![here](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/test.pdf)
+## Demo
 
+Try our live demo with our sample PDF:
+- [Launch Application](https://pdf-parser-88393.web.app)
+- [Download Demo PDF](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/test.pdf)
 
-Start using now at: [here](https://pdf-parser-88393.web.app)
+## Visual Overview
 
-## Video Tutorial
+<details>
+<summary>View Screenshots</summary>
 
-Check out our YouTube video for a quick overview of how to use the PDF parser:
+![Dashboard Interface](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.png)
+![Document Analysis](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/2.png)
+![Query System](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/3.png)
+![Results View](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/4.png)
+![User Dashboard](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/5.png)
 
-[Watch the video](https://youtu.be/ydlOXu-8uQg)
+</details>
 
----
+## Quick Start Guide
 
-by team AI Developers
-- from IT & DS freshers from NIT Jalandhar
-
-
-## Contributions
-
-To get started with PDF-parser, follow these steps:
-
-1. Clone the repository:
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/yourusername/pdf-parser.git
+   cd pdf-parser
+   ```
+
+2. **Watch Tutorial**
+   
+   For a comprehensive overview of the PDF parser's capabilities, watch our tutorial:
+   [Video Guide](https://youtu.be/ydlOXu-8uQg)
+
+---
+
+**Note**: For optimal results, we recommend using the provided demo PDF when first exploring the system's capabilities.
