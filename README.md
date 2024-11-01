@@ -1,7 +1,7 @@
 # PDF-parser for Prajna AI
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://pdf-parser-88393.web.app)
-<aside>Old Rolled back version due to Authentication issues</aside>
+➡️ [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://pdf-parser-88393.web.app)
+> :memo: **Note:** The released version is a rolled-back version due to server-side issues, view the video below to find out the full capabilities.
 
 ## Overview
 
@@ -12,7 +12,7 @@ PDF-parser for Prajna AI is an advanced document processing tool that extracts, 
 - **Document Processing**
   - Comprehensive text and metadata extraction
   - High-accuracy embedding generation
-  - Secure server-side processing
+  - Secure Local processing
 
 - **User Management**
   - Anonymous one-time accounts
@@ -27,21 +27,16 @@ PDF-parser for Prajna AI is an advanced document processing tool that extracts, 
 ## Demo
 
 Try our live demo with our sample PDF:
-- [Launch Application](https://pdf-parser-88393.web.app)
-- [Download Demo PDF](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/test.pdf)
+- [Launch Application](https://pdf-parser-88393.web.app) 🚀
+- [Download Demo PDF](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/test.pdf) ⬇️
 
 ## Visual Overview
-
-<details>
-<summary>View Screenshots</summary>
 
 ![Dashboard Interface](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/1.png)
 ![Document Analysis](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/2.png)
 ![Query System](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/3.png)
 ![Results View](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/4.png)
 ![User Dashboard](https://raw.githubusercontent.com/RishiAhuja/PDF-parser/refs/heads/main/assets/5.png)
-
-</details>
 
 ## Quick Start Guide
 
