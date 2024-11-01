@@ -54,7 +54,7 @@ Try our live demo with our sample PDF:
 2. **Watch Tutorial**
    
    For a comprehensive overview of the PDF parser's capabilities, watch our tutorial:
-   [![Video Tutorial](https://img.youtube.com/vi/ydlOXu-8uQg/maxresdefault.jpg)](https://youtu.be/ydlOXu-8uQg)
+   ![Video Tutorial](https://youtu.be/ydlOXu-8uQg)
 
 ---
 
