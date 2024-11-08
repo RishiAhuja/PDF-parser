@@ -4,7 +4,7 @@
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-➡️ ![Live Demo](https://pdf-parser-88393.web.app)
+➡️ [Launch Application](https://pdf-parser-88393.web.app)
 
 > :memo: **Note:** The released version is a rolled-back version due to server-side issues, view the video below to find out the full capabilities.
 
